@@ -2,7 +2,7 @@
   "name": "poke-cool",
   "version": "0.1.0",
   "private": true,
-  "description": "A Next.js practice project with Tailwind CSS",
+  "description": "A Next.js practice project. Made by Juan Felipe Parra Runceria.",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
