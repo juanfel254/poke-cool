@@ -9,13 +9,13 @@ export function ThemeToggle() {
 
   return (
     <Button
-      className="w-9 cursor-pointer"
+      className="group w-9 cursor-pointer dark:hover:shadow-[0px_0px_30px_0px_#a0aec0] dark:hover:shadow-neutral-100"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       variant="outline"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] scale-100 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 dark:scale-100" />
+      <Sun className="h-[1.2rem] w-[1.2rem] scale-100 opacity-60 transition-all group-hover:opacity-100 dark:scale-0" />
+      <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 opacity-60 group-hover:opacity-100 dark:scale-100" />
     </Button>
   );
 }
