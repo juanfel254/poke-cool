@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
-import { ThemeProvider } from '@/app/components/providers/ThemeProvider';
+import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import { notFound } from 'next/navigation';
 
 // Idiomas soportados
