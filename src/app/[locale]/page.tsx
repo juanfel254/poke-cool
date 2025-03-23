@@ -34,14 +34,14 @@ export default async function Home({
         
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
-            {t.get_started}{' '}
+            {t.messages.get_started}{' '}
             <code className="rounded bg-black/[.05] px-1 py-0.5 font-[family-name:var(--font-geist-mono)] font-semibold dark:bg-white/[.06]">
               src/app/page.tsx
             </code>
             .
           </li>
-          <li className="tracking-[-.01em]">{t.hello}</li>
-          <li className="tracking-[-.01em]">{t.welcome}</li>
+          <li className="tracking-[-.01em]">{t.messages.hello}</li>
+          <li className="tracking-[-.01em]">{t.messages.welcome}</li>
         </ol>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -58,7 +58,7 @@ export default async function Home({
               width={20}
               height={20}
             />
-            {t.deploy_now}
+            {t.messages.deploy_now}
           </a>
           <a
             className="flex h-10 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
@@ -66,7 +66,7 @@ export default async function Home({
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t.read_docs}
+            {t.messages.read_docs}
           </a>
         </div>
       </main>
@@ -84,7 +84,7 @@ export default async function Home({
             width={16}
             height={16}
           />
-          {t.learn}
+          {t.messages.learn}
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -99,7 +99,7 @@ export default async function Home({
             width={16}
             height={16}
           />
-          {t.examples}
+          {t.messages.examples}
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -114,7 +114,7 @@ export default async function Home({
             width={16}
             height={16}
           />
-          {t.go_to_nextjs}
+          {t.messages.go_to_nextjs}
         </a>
       </footer>
     </div>
