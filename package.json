@@ -4,12 +4,13 @@
   "private": true,
   "description": "A Next.js practice project. Made by Juan Felipe Parra Runceria.",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "node scripts/generate-translation-types.js && next dev --turbopack",
+    "build": "node scripts/generate-translation-types.js && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "generate-types": "node scripts/generate-translation-types.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",

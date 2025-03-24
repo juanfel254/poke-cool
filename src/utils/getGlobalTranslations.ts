@@ -1,4 +1,5 @@
 import commonTranslations from '@/i18n/common.json';
+import { LanguageTranslations, getTranslation } from '@/types/global-translations';
 
 /**
  * Utilidad para acceder a las traducciones globales en componentes servidor
@@ -14,10 +15,28 @@ import commonTranslations from '@/i18n/common.json';
  * const globalT = getGlobalTranslations(params.locale);
  * return <p>{globalT.messages.welcome}</p>;
  */
-export function getGlobalTranslations(locale: string) {
+export function getGlobalTranslations(locale: string): LanguageTranslations {
   // Normalizar el locale
   const normalizedLocale = (locale || 'es').toLowerCase();
   
   // Devolver las traducciones globales según el idioma
   return normalizedLocale === 'en' ? commonTranslations.en : commonTranslations.es;
+}
+
+/**
+ * Utilidad para acceder directamente a una traducción específica (para componentes servidor)
+ * 
+ * @param locale Código de idioma (es, en)
+ * @param path Ruta a la traducción, usando puntos como separadores (ej: "messages.welcome")
+ * @param fallback Valor de fallback en caso de que la traducción no exista
+ * @returns La traducción correspondiente
+ * 
+ * @example
+ * // En un componente servidor:
+ * const welcomeMessage = getTranslationForLocale('es', 'messages.welcome', 'Bienvenido');
+ * return <p>{welcomeMessage}</p>;
+ */
+export function getTranslationForLocale(locale: string, path: string, fallback: string = ''): string {
+  const translations = getGlobalTranslations(locale);
+  return getTranslation(translations, path, fallback);
 } 

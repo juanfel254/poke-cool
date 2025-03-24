@@ -2,13 +2,13 @@ import Image from 'next/image';
 import { ThemeToggle } from '../components/ThemeToggle';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { getGlobalTranslations } from '@/utils';
+import { GlobalMessage } from '../components/GlobalMessage';
 
 export default async function Home({
   params,
 }: {
   params: { locale: string }
 }) {
-
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
   const t = getGlobalTranslations(locale);
@@ -29,7 +29,12 @@ export default async function Home({
             <ThemeToggle />
             <LanguageSwitcher />
           </div>
-        </div>        
+        </div>
+
+        <div className="w-full max-w-md">
+          <GlobalMessage />
+        </div>
+        
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             {t.messages.get_started}{' '}
