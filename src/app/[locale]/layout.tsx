@@ -4,9 +4,6 @@ import '../globals.css';
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import { notFound } from 'next/navigation';
 
-// Idiomas soportados
-export const locales = ['es', 'en'];
-
 // Configuración de las fuentes
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,22 +21,18 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return [{ locale: 'es' }, { locale: 'en' }];
 }
 
 export default async function RootLayout({
-  children,
   params,
-}: Readonly<{
+  children,
+}: {
+  params: Promise<{ locale: string }>;
   children: React.ReactNode;
-  params: { locale: string };
-}>) {
-  // Esperar a que los parámetros se resuelvan
-  const resolvedParams = await params;
-  const locale = resolvedParams.locale;
-
-  // Verificar que el locale es válido
-  if (!locales.includes(locale)) {
+}) {
+  const { locale } = await params;
+  if (locale !== 'es' && locale !== 'en') {
     notFound();
   }
 
