@@ -1,1 +1,2 @@
-export * from './getServerTranslations'; 
+export * from './getServerTranslations';
+export * from './getGlobalTranslations'; 

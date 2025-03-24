@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import { ThemeToggle } from '../components/ThemeToggle';
 import LanguageSwitcher from '../components/LanguageSwitcher';
-import { getServerTranslations } from '@/utils';
-import translations from '@/i18n/common.json';
+import { getGlobalTranslations } from '@/utils';
 
 export default async function Home({
   params,
@@ -12,7 +11,7 @@ export default async function Home({
 
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
-  const t = getServerTranslations(translations, locale);
+  const t = getGlobalTranslations(locale);
 
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
@@ -30,8 +29,7 @@ export default async function Home({
             <ThemeToggle />
             <LanguageSwitcher />
           </div>
-        </div>
-        
+        </div>        
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             {t.messages.get_started}{' '}

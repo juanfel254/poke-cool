@@ -2,24 +2,18 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '@/app/components/ui/button';
-import { useComponentTranslations, useLocale } from '@/hooks';
-
-// Importar directamente las traducciones
+import { useComponentTranslations, useLocale, useGlobalTranslations } from '@/hooks';
 import translations from './translations.json';
 
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
-  
-  // Extraer solo la parte de la ruta después del locale
   const segments = pathname.split('/');
   const restOfPath = segments.slice(2).join('/');
   
-  // Usar el hook para obtener las traducciones
   const t = useComponentTranslations(translations);
-  
-  // Cambiar el idioma
+  const globalT = useGlobalTranslations();
   const changeLocale = (locale: string) => {
     const newPath = `/${locale}${restOfPath ? '/' + restOfPath : ''}`;
     router.push(newPath);
@@ -33,7 +27,7 @@ export default function LanguageSwitcher() {
         onClick={() => changeLocale('es')}
         title={t.language_es}
       >
-        ES
+        {globalT.languages.es}
       </Button>
       <Button
         variant={currentLocale === 'en' ? 'default' : 'outline'}
@@ -41,7 +35,7 @@ export default function LanguageSwitcher() {
         onClick={() => changeLocale('en')}
         title={t.language_en}
       >
-        EN
+        {globalT.languages.en}
       </Button>
     </div>
   );
