@@ -4,6 +4,11 @@
  */
 
 /**
+ * Tipo recursivo para valores de traducción
+ */
+export type TranslationValue = string | { [key: string]: TranslationValue };
+
+/**
  * Interfaz para las traducciones de un idioma específico
  */
 export interface LanguageTranslations {
@@ -22,6 +27,7 @@ export interface LanguageTranslations {
     en: string;
   };
 
+  [key: string]: TranslationValue;
 }
 
 /**
@@ -39,7 +45,7 @@ export type SupportedLanguage = keyof GlobalTranslations;
 
 /**
  * Función de utilidad para acceder de forma segura a traducciones anidadas
- * 
+ *
  * @param translations Las traducciones del idioma actual
  * @param path Ruta de acceso a la traducción, usando puntos como separadores (ej: "messages.welcome")
  * @param fallback Valor de fallback en caso de que la traducción no exista
@@ -48,19 +54,19 @@ export type SupportedLanguage = keyof GlobalTranslations;
 export function getTranslation(
   translations: LanguageTranslations,
   path: string,
-  fallback: string = ""
+  fallback: string = ''
 ): string {
-  const keys = path.split(".");
-  let result: any = translations;
+  const keys = path.split('.');
+  let result: TranslationValue = translations;
 
   for (const key of keys) {
-    if (result && typeof result === "object" && key in result) {
+    if (result && typeof result === 'object' && key in result) {
       result = result[key];
     } else {
       return fallback;
     }
   }
 
-  return typeof result === "string" ? result : fallback;
+  return typeof result === 'string' ? result : fallback;
 }
 

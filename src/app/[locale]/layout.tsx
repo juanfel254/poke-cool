@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   description: 'Your cool and online Pokédex',
 };
 
-// Generamos los parámetros estáticos para las rutas
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -38,7 +37,7 @@ export default async function RootLayout({
   // Esperar a que los parámetros se resuelvan
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
-  
+
   // Verificar que el locale es válido
   if (!locales.includes(locale)) {
     notFound();
@@ -60,4 +59,4 @@ export default async function RootLayout({
       </body>
     </html>
   );
-} 
+}

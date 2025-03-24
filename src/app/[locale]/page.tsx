@@ -3,20 +3,17 @@ import { ThemeToggle } from '../components/ThemeToggle';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { getGlobalTranslations } from '@/utils';
 import { GlobalMessage } from '../components/GlobalMessage';
+import ServerComponent from '../components/ServerComponent';
+import { getCurrentLocale } from '@/utils/getCurrentLocale';
 
-export default async function Home({
-  params,
-}: {
-  params: { locale: string }
-}) {
-  const resolvedParams = await params;
-  const locale = resolvedParams.locale;
+export default async function Home() {
+  const locale = await getCurrentLocale();
   const t = getGlobalTranslations(locale);
 
   return (
     <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
       <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex w-full items-center justify-between">
           <Image
             className="dark:invert"
             src="/next.svg"
@@ -33,8 +30,9 @@ export default async function Home({
 
         <div className="w-full max-w-md">
           <GlobalMessage />
+          <ServerComponent />
         </div>
-        
+
         <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm/6 sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
             {t.messages.get_started}{' '}
@@ -122,4 +120,4 @@ export default async function Home({
       </footer>
     </div>
   );
-} 
+}
